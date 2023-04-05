@@ -28,7 +28,7 @@ function chatbot(previousQuestionsAndAnswers, newQuestion) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer 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",
+        Authorization: "Bearer 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",
       },
       body: JSON.stringify({
         prompt: messages
