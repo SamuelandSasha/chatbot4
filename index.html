@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chatbot Example</title>
+    <style>
+      .chat-user {
+        text-align: right;
+        color: blue;
+      }
+      .chat-assistant {
+        text-align: left;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chatbox"></div>
+    <form id="chat-form">
+      <input type="text" id="chat-input" />
+      <button type="submit">Send</button>
+    </form>
+
+    <script src="chatbot.js"></script>
+    <script>
+      // Define the chat form submission handler
+      function handleChatFormSubmit(event) {
+        // Prevent the form from submitting
+        event.preventDefault();
+
+        // Get the chat input
+        var chatInput = document.getElementById("chat-input");
+
+        // Get the previous questions and answers from local storage
+        var previousQuestionsAndAnswers =
+          JSON.parse(localStorage.getItem("previousQuestionsAndAnswers")) || [];
+
+        // Get the new question from the chat input
+        var newQuestion = chatInput.value;
+
+        // Call the chatbot function with the previous questions and answers and the new question
+        chatbot(previousQuestionsAndAnswers, newQuestion);
+
+        // Clear the chat input
+        chatInput.value = "";
+
+        // Save the previous questions and answers to local storage
+        localStorage.setItem(
+          "previousQuestionsAndAnswers",
+          JSON.stringify(previousQuestionsAndAnswers)
+        );
+      }
+
+      // Add the chat form submission handler to the chat form
+      var chatForm = document.getElementById("chat-form");
+      chatForm.addEventListener("submit", handleChatFormSubmit);
+    </script>
+  </body>
+</html>
